@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://lgbuv8t3bxjq"]
+[gd_scene load_steps=4 format=3 uid="uid://lgbuv8t3bxjq"]
 
 [ext_resource type="Script" uid="uid://hcayscs038nh" path="res://scripts/main.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://3bp4jnk0q5n5" path="res://scripts/visual_tree_node_3d.gd" id="2_0wfyh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wfyh"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_o5qli")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="VisualTreeNode3D" type="MeshInstance3D" parent="Node3D"]
+material_override = SubResource("StandardMaterial3D_0wfyh")
+script = ExtResource("2_0wfyh")
