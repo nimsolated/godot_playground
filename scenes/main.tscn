@@ -1,15 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://lgbuv8t3bxjq"]
+[gd_scene load_steps=8 format=3 uid="uid://lgbuv8t3bxjq"]
 
 [ext_resource type="Script" uid="uid://hcayscs038nh" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://3bp4jnk0q5n5" path="res://scripts/visual_tree_node_3d.gd" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://betppii54y0lt" path="res://scripts/tree_node_cam_3d.gd" id="3_sugp2"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wfyh"]
+[sub_resource type="SphereMesh" id="SphereMesh_jyhfs"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0wfyh"]
+
+[sub_resource type="Sky" id="Sky_sugp2"]
+sky_material = SubResource("ProceduralSkyMaterial_0wfyh")
+
+[sub_resource type="Environment" id="Environment_jyhfs"]
+background_mode = 2
+sky = SubResource("Sky_sugp2")
 
 [node name="Main" type="Node"]
 script = ExtResource("1_o5qli")
 
 [node name="Node3D" type="Node3D" parent="."]
 
-[node name="VisualTreeNode3D" type="MeshInstance3D" parent="Node3D"]
-material_override = SubResource("StandardMaterial3D_0wfyh")
+[node name="TreeRoot" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("SphereMesh_jyhfs")
 script = ExtResource("2_0wfyh")
+
+[node name="TreeNodeCam3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.5)
+environment = SubResource("Environment_jyhfs")
+current = true
+script = ExtResource("3_sugp2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node3D"]
+transform = Transform3D(0.856681, -0.441301, 0.267114, 0, 0.517818, 0.855491, -0.515846, -0.732883, 0.443605, 0, 0, 0)
